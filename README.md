@@ -5,6 +5,9 @@ So the creators of the C# Pokemon Go Bot decided to make their Bot paid only and
 # How to use
 If you haven’t already, download [NodeJS](https://nodejs.org/en/download/).<br><br>
 Download the whole Repository as a zip file, unzip it and open the new folder. Now hit `Shift` while pressing `Right Click` and select “Open Command prompt” .<br><br>
+Type in `certmgr`<br>
+Now right click on "trusted root certification authorities" go to "all task" and click on "import". Now selct the `cert.cert` file and just proceed all other steps. After you've imported the cert, you can proceed.<br><br>
+
 
 Now type in `npm i` and wait. <br><br>
 Now open up your Editor with admin rights and open the `hosts` file, which is located in ` %windir%/system32/drivers/etc`. <br>
