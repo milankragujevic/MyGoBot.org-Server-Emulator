@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Mygobot.org-server-emulator by NotBela</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Mygobot.org-server-emulator</h1>
+        <h2>A simple Server Emulator for the MyGoBot.org Pokemon Go Bot</h2>
+        <a href="https://github.com/NotBela/MyGoBot.org-Server-Emulator" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="mygobotorg-server-emulator" class="anchor" href="#mygobotorg-server-emulator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MyGoBot.org-Server-Emulator</h1>
+
+<p>A simple Server Emulator for the MyGoBot.org Pokemon Go Bot<br><br>
+So the creators of the C# Pokemon Go Bot decided to make their Bot paid only and stop the open source development. They want 5 Bucks the time I’m writing this, but I don’t want to spend 5 Dollars on a very pore coded .NET Bot, which uses large parts of an open source project anyway. The only reason, why I want to use this bot is, that the Open Source Version is outdated and buggy as hell and the other Python Version of the Bot, isn’t very optimized yet. So, I guess I have to start up my Windows Machine again and has to crackdown this bot. So let’s get started.</p>
+
+<h1>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h1>
+
+<p>If you haven’t already, download <a href="https://nodejs.org/en/download/">NodeJS</a>.<br><br>
+Download the whole Repository as a zip file, unzip it and open the new folder. Now hit <code>Shift</code> while pressing <code>Right Click</code> and select “Open Command prompt” .<br><br>
+Type in <code>certmgr</code><br>
+Now right click on "trusted root certification authorities" go to "all task" and click on "import". Now selct the <code>cert.cert</code> file and just proceed all other steps. After you've imported the cert, you can proceed.<br><br></p>
+
+<p>Now type in <code>npm i</code> and wait. <br><br>
+Now open up your Editor with admin rights and open the <code>hosts</code> file, which is located in <code>%windir%/system32/drivers/etc</code>. <br>
+Add <code>127.0.0.1   mygobot.org</code> at the end of the file and save it.<br><br>
+Now type in <code>node index.js</code> and start the Bot. If everything works correctly, you should now see some Console Output in your Command Prompts.<br>
+You should now be able, to type in anything as your login token and hit login at the Bot Screen.</p>
+
+<h1>
+<a id="breakdown" class="anchor" href="#breakdown" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Breakdown</h1>
+
+<p>The Bot uses a Auth Token to check, if you bought the Bot. To do this, it just makes an JSON Request to <code>https://mygobot.org/api/auth</code> and gets a JSON Object describing the user back. They actually used HTTPS but don’t gave a fuck about security whatsoever. They don’t check the SSL Certs. So we can just emulate our own Server :D. We just redirect the DNS Entry for mygobot.org to our local machine by adding <code>mygobot.org</code> to our local <code>hosts</code> File and host a web server on port 443 with self-signed Certs. The bot askes on <code>/api/auth</code> for the user info and we just give him our prepared JSON Object back. The Bot only cares for three Values of the JSON Object. <code>Name, Purchased and account_type</code>. We just fill it out with our own values and are ready to go. The Bot also has a Version check on <code>/api/version</code>. We will just proxy this request to the original Server and pipe the response to our local webserver request. The problem is, that we already overwrote the DNS Entry for <code>mygobot.org</code>, so we have to use their direct IP. But sadly Cloudflare doesn’t allows Direct IP accesses. We bypass that by adding our custom Host header and make Cloudflare thinking by this, that we are using the normal domain.<br><br>
+That’s the whole magic behind the Server Emulator. Not to complex.<br>
+Thanks for reading</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/NotBela/MyGoBot.org-Server-Emulator/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/NotBela/MyGoBot.org-Server-Emulator/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/NotBela/MyGoBot.org-Server-Emulator"></a> is maintained by <a href="https://github.com/NotBela">NotBela</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
