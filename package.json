@@ -1,0 +1,12 @@
+{
+  "name": "mygobot-server-emulator",
+  "version": "1.0.0",
+  "description": "A simple Auth and Version Server Emulator for the MyGoBot.org Bot",
+  "main": "index.js",
+  "dependencies": {
+    "request": "^2.74.0"
+  },
+  "devDependencies": {},
+  "author": "Bela Stoyan <bela_stoyan@protonmail.com>",
+  "license": "AGPL-3.0"
+}
